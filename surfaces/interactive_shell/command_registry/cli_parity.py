@@ -468,7 +468,8 @@ def _cmd_remote(session: Session, console: Console, args: list[str]) -> bool:  #
         "/remote-sync mirrors sessions and memory to an object store; "
         "it does not control deployed agents. Use [bold]/help[/bold] for supported commands."
     )
-    return False
+    session.mark_latest(ok=False, kind="slash")
+    return True
 
 
 def _cmd_logout(session: Session, console: Console, args: list[str]) -> bool:  # noqa: ARG001

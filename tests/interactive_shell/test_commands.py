@@ -2697,9 +2697,9 @@ class TestCliDelegatedCommands:
         dispatch_slash(command, Session(), Console())
         assert captured == [expected_args]
 
-    def test_remote_retired_prints_guidance_and_returns_false(self, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_remote_retired_prints_guidance_and_keeps_shell_alive(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """``/remote`` must not invoke a subprocess — it prints a retirement
-        message and returns False so the shell stays alive."""
+        message, records a failure, and returns True so the shell stays alive."""
         from surfaces.interactive_shell.command_registry import cli_parity as m
 
         def _fail_if_called(*args: object, **kwargs: object) -> object:
@@ -2708,9 +2708,10 @@ class TestCliDelegatedCommands:
         monkeypatch.setattr(m.subprocess, "run", _fail_if_called)
         buf = io.StringIO()
         console = Console(file=buf, force_terminal=False, width=200)
-        result = dispatch_slash("/remote", Session(), console)
+        session = Session()
+        result = dispatch_slash("/remote", session, console)
         output = buf.getvalue()
-        assert result is False
+        assert result is True
         assert "retired" in output.lower() or "unavailable" in output.lower()
         assert "remote-sync" in output.lower()
 
