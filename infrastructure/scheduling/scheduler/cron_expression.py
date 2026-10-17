@@ -47,9 +47,7 @@ _NAMED_WEEKDAY_RANGE = re.compile(
 #: APScheduler/crontab month names (1-indexed: jan=1 … dec=12).
 _MONTH_NAMES = ("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec")
 # Named month range with an optional step, e.g. ``jan-dec/3`` or ``apr-jun``.
-_NAMED_MONTH_RANGE = re.compile(
-    r"(?P<first>[a-z]{3})(?:-(?P<last>[a-z]{3}))?(?:/(?P<step>\d+))?$"
-)
+_NAMED_MONTH_RANGE = re.compile(r"(?P<first>[a-z]{3})(?:-(?P<last>[a-z]{3}))?(?:/(?P<step>\d+))?$")
 
 
 def _named_weekday_to_numeric(item: str) -> str | None:
