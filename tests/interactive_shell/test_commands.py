@@ -2697,7 +2697,9 @@ class TestCliDelegatedCommands:
         dispatch_slash(command, Session(), Console())
         assert captured == [expected_args]
 
-    def test_remote_retired_prints_guidance_and_keeps_shell_alive(self, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_remote_retired_prints_guidance_and_keeps_shell_alive(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """``/remote`` must not invoke a subprocess — it prints a retirement
         message, records a failure, and returns True so the shell stays alive."""
         from surfaces.interactive_shell.command_registry import cli_parity as m
