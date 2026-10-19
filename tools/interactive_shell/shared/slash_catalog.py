@@ -617,7 +617,7 @@ def slash_invoke_tool_description(specs: list[SlashCommandSpec] | None = None) -
         "order; for example "
         '`run /sessions and then investigate "hello world"` requires '
         'slash_invoke(command="/sessions", args=[]) followed by '
-        'investigation_start(alert_text="hello world").'
+        'an investigation of "hello world" using the available investigation tools.'
     )
     # Keep planner payload intentionally tiny for live LLM runs with strict
     # prompt budgets. The full rich catalog remains available via
