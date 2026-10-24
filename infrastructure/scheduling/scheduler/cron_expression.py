@@ -114,8 +114,8 @@ def build_cron_trigger(cron: str, timezone: str | None) -> Any:
     Raises ``ValueError`` when the field count, a field value, or the timezone
     is invalid, so callers reject a schedule before it is stored.
     """
-    from apscheduler.triggers.cron import CronTrigger
     from apscheduler.triggers.combining import OrTrigger
+    from apscheduler.triggers.cron import CronTrigger
 
     parts = cron.split()
     if len(parts) == CRON_FIELD_COUNT:
